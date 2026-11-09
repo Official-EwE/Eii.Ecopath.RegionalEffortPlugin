@@ -1,0 +1,20 @@
+<Project>
+  <Target Name="SetRegionalEffortPluginBuildDestination"
+          AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Update="@(ReferenceCopyLocalPaths)"
+                               Condition="'%(ReferenceCopyLocalPaths.Filename)' == 'EcoOceanDriveEffortPlugin'">
+        <DestinationSubDirectory>Plugins\RegionalEffortPlugin\</DestinationSubDirectory>
+      </ReferenceCopyLocalPaths>
+    </ItemGroup>
+  </Target>
+  <Target Name="SetRegionalEffortPluginPublishDestination"
+          AfterTargets="ComputeResolvedFilesToPublishList">
+    <ItemGroup>
+      <ResolvedFileToPublish Update="@(ResolvedFileToPublish)"
+                             Condition="'%(ResolvedFileToPublish.Filename)' == 'EcoOceanDriveEffortPlugin'">
+        <RelativePath>Plugins\RegionalEffortPlugin\%(ResolvedFileToPublish.Filename)%(ResolvedFileToPublish.Extension)</RelativePath>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+</Project>
